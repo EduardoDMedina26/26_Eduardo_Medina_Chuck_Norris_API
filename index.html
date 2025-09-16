@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>API Chuck Norris</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-image: url('https://www.fiftysounds.com/images/graphics/white-low-poly-background-338.jpg');
+    }
+    #chiste {
+      margin-top: 20px;
+      font-size: 25px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #boton {
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: rgb(231, 34, 34);
+      color: white;
+      border-radius: 5px;
+      border: 1px solid black;
+    }
+    #boton:hover {
+      transform: scale(1.10);
+    }
+
+    #boton:active {
+      animation: pulse 0.5s ease;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <h1>😂 Los chistes de Chuck Norris 😂</h1>
+  <button  id="boton" onclick="Chiste()"> Obtener un chiste</button>
+  <div id="chiste">Haz clic en el botón para obtener un chiste.</div>
+
+  <script>
+    async function Chiste() {
+      try {
+        const respuesta = await fetch('https://api.chucknorris.io/jokes/random');
+        const datos = await respuesta.json();
+        document.getElementById('chiste').textContent = datos.value;
+      } catch (error) {
+        document.getElementById('chiste').textContent = 'Error al obtener el chiste. Intenta de nuevo.';
+      }
+    }
+  </script>
+
+</body>
+</html>
